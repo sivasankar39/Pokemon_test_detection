@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prediction result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <h1 class="mb-4">Prediction</h1>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Predicted type_1: <span class="badge bg-success">{{ prediction }}</span></h3>
+        </div>
+      </div>
+
+      {% if probabilities %}
+      <h4>Class probabilities</h4>
+      <table class="table table-sm">
+        <thead>
+          <tr><th>Type</th><th>Probability</th></tr>
+        </thead>
+        <tbody>
+          {% for label, p in probabilities %}
+          <tr><td>{{ label }}</td><td>{{ "{:.3f}".format(p) }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="alert alert-info">No probability information available.</div>
+      {% endif %}
+
+      <a href="/" class="btn btn-secondary">Back</a>
+    </div>
+  </body>
+</html>
